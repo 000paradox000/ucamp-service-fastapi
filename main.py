@@ -1,12 +1,16 @@
 from fastapi import FastAPI, Request
 
+from model import make_prediction
+
 app = FastAPI()
 
 
 @app.post('/predict')
 def predict(request: Request, data: dict) -> dict:
+    results = make_prediction(data)
+
     return {
-        "message": data,
+        "results": results,
     }
 
 
